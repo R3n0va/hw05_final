@@ -55,7 +55,7 @@ class StaticURLTests(TestCase):
 
     def test_unauthorized_user_urls_status_code(self):
         self.field_urls_code[reverse('posts:create')] = 302
-        self.field_urls_code[reverse('posts:edit', 
+        self.field_urls_code[reverse('posts:edit',
                                      kwargs={'post_id': self.post.id})] = 302
         for url, response_code in self.field_urls_code.items():
             with self.subTest(url=url):
