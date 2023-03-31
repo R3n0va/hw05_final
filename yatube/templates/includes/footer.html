@@ -1,0 +1,11 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<div class="d-flex justify-content-center">
+  <div>
+    {% include 'includes/paginator.html' %}
+  </div>
+</div>
+  <footer class="border-top text-center py-3">
+    <!-- тег span используется для добавления нужных стилей отдельным участкам текста --> 
+    <p>© {{year}} Copyright <span style="color:red">Ya</span>tube</p>    
+  </footer>
