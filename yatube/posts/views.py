@@ -80,9 +80,8 @@ def post_edit(request, post_id):
 
 @login_required
 def follow_index(request):
-    context = {'page_obj': page_obj}
-    context.update({'page_obj': page_obj(
-        request, Post.objects.filter(author__following__user=request.user))})
+    context = {'page_obj': page_obj(
+        request, Post.objects.filter(author__following__user=request.user))}
     return render(request, 'posts/follow.html', context)
 
 
