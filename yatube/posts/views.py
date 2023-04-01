@@ -16,17 +16,15 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    context = {'group': group, 'page_obj': page_obj}
-    context.update({'page_obj': page_obj(
-        request, group.posts.select_related('group'))})
+    context = {'group': group, 'page_obj': page_obj(
+        request, group.posts.select_related('group'))}
     return render(request, 'posts/group_list.html', context)
 
 
 def profile(request, username):
     author = get_object_or_404(User, username=username)
-    context = {'page_obj': page_obj, 'author': author}
-    context.update({'page_obj': page_obj(
-        request, Post.objects.filter(author=author))})
+    context = {'page_obj': page_obj(
+        request, Post.objects.filter(author=author)), 'author': author}
     return render(request, 'posts/profile.html', context)
 
 
