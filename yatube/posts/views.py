@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.cache import cache_page
+from django.urls import reverse
 
 from .forms import PostForm, CommentForm
 from .models import Group, Post, User, Follow
@@ -97,11 +98,10 @@ def profile_follow(request, username):
 
 @login_required
 def profile_unfollow(request, username):
-    user_follower = get_object_or_404(
-        Follow,
+    unfollow = Follow.objects.select_related('user').filter(
         user=request.user,
-        author__username=username
+        author__username=username,
     )
-    if user_follower.DoesNotExist():
-        user_follower.delete()
-    return redirect('posts:profile', username)
+    if unfollow.exists():
+        unfollow.delete()
+    return redirect(reverse('posts:profile', kwargs={'username': username}))

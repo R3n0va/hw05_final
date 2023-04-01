@@ -42,23 +42,6 @@ class PostPagesTests(TestCase):
         )
         cls.authorized_client = Client()
         cls.authorized_client.force_login(cls.user)
-        post_args = 1
-        cls.index_url = ('posts:index', 'posts/index.html', None)
-        cls.group_url = ('posts:group_list', 'posts/group_list.html',
-                         cls.group.slug)
-        cls.profile_url = ('posts:profile', 'posts/profile.html',
-                           cls.user.username)
-        cls.post_url = ('posts:post_detail', 'posts/post_detail.html',
-                        post_args)
-        cls.new_post_url = ('posts:post_create', 'posts/create_post.html',
-                            None)
-        cls.edit_post_url = ('posts:post_edit', 'posts/create_post.html',
-                             post_args)
-        cls.paginated_urls = (
-            cls.index_url,
-            cls.group_url,
-            cls.profile_url
-        )
 
     def check_post_info(self, post):
         with self.subTest(post=post):
